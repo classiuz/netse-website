@@ -6,11 +6,6 @@ import QuestionCard from './QuestionCard'
 import ControlMenu from './ControlMenu'
 import faqs from '@/data/faqs.json'
 
-export const metadata = {
-  title: 'FAQs | NetSE',
-  description: 'Description - FAQs',
-}
-
 export default function FAQs() {
   const [currentCategory, setCurrentCategory] = useState(faqs[0]?.id || 1)
   const [query, setQuery] = useState('')
