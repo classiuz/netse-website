@@ -1,30 +1,39 @@
 import { useEffect, useState } from 'react'
 
-const BREAKPOINT = 1024
-
 export default function useNavbar() {
   const [isBackgroundVisible, setIsBackgroundVisible] = useState(false)
-  const [isDesktopWidth, setIsDesktopWidth] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHover, setIsHover] = useState(false)
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const handleIsHover = {
+    onMouseEnter: () => {
+      setIsHover(true)
+    },
+    onMouseLeave: () => {
+      setIsHover(false)
+    },
+
+    onClick: () => {
+      setIsHover(!isHover)
+    },
+  }
+
+  const handleWindowResize = () => {
+    if (window.scrollY >= 63) return setIsBackgroundVisible(true)
+    setIsBackgroundVisible(false)
+  }
 
   useEffect(() => {
-    const changeBackground = () => {
-      if (window.scrollY >= 63) return setIsBackgroundVisible(true)
-      setIsBackgroundVisible(false)
-    }
-
-    const checkScreenWidth = () => {
-      setIsDesktopWidth(window.innerWidth >= BREAKPOINT)
-    }
-
-    changeBackground()
-    window.addEventListener('scroll', changeBackground)
-    checkScreenWidth()
-    window.addEventListener('resize', checkScreenWidth)
+    handleWindowResize()
+    window.addEventListener('scroll', handleWindowResize)
     return () => {
-      window.removeEventListener('scroll', changeBackground)
-      window.removeEventListener('resize', checkScreenWidth)
+      window.removeEventListener('scroll', handleWindowResize)
     }
   }, [])
 
-  return { isBackgroundVisible, isDesktopWidth }
+  return { isBackgroundVisible, isMenuOpen, handleMenuToggle, isHover, handleIsHover }
 }

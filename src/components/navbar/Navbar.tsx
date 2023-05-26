@@ -1,70 +1,50 @@
 'use client'
-
-import { useCallback, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import useNavbar from './useNavbar'
-import NavDropDown from './NavDropDown'
-import NavLinks from './NavLinks'
-import Icon from '../Icon'
 import clsx from 'clsx'
+import Icon from '../Icon'
+import useNavbar from './useNavbar'
+import NavLinks from './NavLinks'
 
 export default function Navbar() {
-  const { isDesktopWidth, isBackgroundVisible } = useNavbar()
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const handleMenuToggle = useCallback(() => {
-    if (isDesktopWidth) return false
-    setIsMenuOpen((prevState) => !prevState)
-  }, [setIsMenuOpen, isDesktopWidth])
+  const { isBackgroundVisible, isMenuOpen, handleMenuToggle } = useNavbar()
 
   return (
     <nav
-      className={clsx(
-        'sticky top-0 z-50 flex w-full select-none items-center justify-between border-b p-4 backdrop-blur-sm lg:justify-around',
-        {
-          'border-outline bg-surface': isMenuOpen === true,
-          'border-outline bg-neutral-200/60': isBackgroundVisible === true,
-          'border-transparent bg-transparent': isBackgroundVisible === false && isMenuOpen === false,
-        }
-      )}
+      className={clsx('sticky top-0 z-40 flex w-full select-none items-center justify-between border-b p-4 lg:justify-around', {
+        'bg-surface': isMenuOpen,
+        'border-none bg-transparent': !isBackgroundVisible && !isMenuOpen,
+        'border-outline bg-neutral-200/80 backdrop-blur-md': isBackgroundVisible && !isMenuOpen,
+      })}
     >
       <Link href="/" className="h-fit w-[139.5px] lg:w-[159px]">
         <Image src={'/logotype.webp'} width={219} height={42} alt={'Netse generando vínculos'} priority />
       </Link>
 
-      <button type="button" className="block text-3xl text-neutral-600 transition-all lg:hidden" onClick={handleMenuToggle}>
-        <Icon iconName={isMenuOpen ? 'xmark' : 'menu'} />
-      </button>
+      <div className="flex lg:hidden">
+        <button
+          type="button"
+          className="block select-none text-3xl text-neutral-600 transition-all lg:hidden"
+          onClick={handleMenuToggle}
+        >
+          <Icon iconName={isMenuOpen ? 'xmark' : 'menu'} />
+        </button>
+        <ul
+          className={clsx(
+            'absolute left-0 flex w-full flex-col gap-6 overflow-hidden border-b border-inherit bg-surface px-9 py-6 text-lg text-neutral-600 transition-height ease-open',
+            {
+              'visible top-[63px] z-30 max-h-96': isMenuOpen,
+              'invisible max-h-0': !isMenuOpen,
+            }
+          )}
+        >
+          <NavLinks />
+        </ul>
+      </div>
 
-      <ul
-        className={clsx('text-lg text-neutral-600', {
-          'flex flex-row gap-6': isDesktopWidth === true,
-          'absolute left-0 top-[63px] flex w-full flex-col gap-4 border-b border-inherit bg-inherit px-4 pb-12 pt-4':
-            isMenuOpen === true && isDesktopWidth === false,
-          hidden: isMenuOpen === false && isDesktopWidth === false,
-        })}
-      >
-        <NavLinks text="Inicio" href="/" />
-        <NavDropDown
-          title="Productos y servicios"
-          list={[
-            { name: 'Internet Inalámbrico', href: '/internet-inalambrico' },
-            { name: 'Internet Fibra Óptica', href: '/internet-fibra-optica' },
-            { name: 'Conectividad Satelital', href: '/conectividad-satelital' },
-          ]}
-        />
-        <NavLinks text="Contacto" href="/contacto" />
-        <NavLinks text="FAQs" href="/faqs" />
-        <NavDropDown
-          title="Portal Clientes"
-          list={[
-            { name: 'Clientes Inalámbrico', href: 'http://netseportal.com/', externaNavigation: true },
-            { name: 'Clientes Fibra Óptica', href: 'http://fiber.netseportal.com/', externaNavigation: true },
-            { name: 'No estoy seguro', href: '/faqs?tab=general#queserviciosoy' },
-          ]}
-        />
-      </ul>
+      <div className="hidden gap-6 text-lg lg:flex">
+        <NavLinks />
+      </div>
     </nav>
   )
 }
