@@ -1,15 +1,15 @@
+import { type FaqsData } from '@/resources/types/faqs'
 import { useMemo } from 'react'
-import faqs from '@/data/faqs.json'
 
-export default function useFilter(query: string) {
+export default function useFilter(data: FaqsData[], searchQuery: string) {
   return useMemo(() => {
-    return faqs.map(({ articles, id }) => {
+    return data.map(({ questions, id }) => {
       return {
         id,
-        articles: articles.filter(({ title, body }) => {
-          return title.toLowerCase().includes(query.toLowerCase()) || body.toLowerCase().includes(query.toLowerCase())
+        questions: questions.filter(({ title, content }) => {
+          return title.toLowerCase().includes(searchQuery.toLowerCase()) || content.toLowerCase().includes(searchQuery.toLowerCase())
         }),
       }
     })
-  }, [query])
+  }, [searchQuery, data])
 }

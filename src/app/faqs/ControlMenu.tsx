@@ -1,22 +1,27 @@
-import { type Faqs } from '@/utils/faqs'
+'use client'
+import { useContext } from 'react'
+import { FaqsContext } from './FaqsContext'
 import clsx from 'clsx'
-import { Dispatch, SetStateAction } from 'react'
 
-interface Props {
-  categories: Faqs[]
-  currentCategory: number
-  changeCategory: Dispatch<SetStateAction<number>>
-}
+export default function ControlMenu() {
+  const { allCategories, currentCategory, setCurrentCategory, setIsAllOpen } = useContext(FaqsContext)
 
-export default function ControlMenu({ categories, currentCategory, changeCategory }: Props) {
   const handleClick = (id: number) => {
-    changeCategory(id)
+    setCurrentCategory(id)
+  }
+
+  const handleExpandAll = () => {
+    setIsAllOpen(true)
+  }
+
+  const handleCollapseAll = () => {
+    setIsAllOpen(false)
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
+    <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
       <ul className="flex gap-4 text-sm lg:gap-6 lg:text-base">
-        {categories.map(({ name, id }) => {
+        {allCategories.map(({ id, category }) => {
           return (
             <li
               key={id}
@@ -26,16 +31,20 @@ export default function ControlMenu({ categories, currentCategory, changeCategor
                 'text-neutral-600 ': currentCategory !== id,
               })}
               role="button"
-              aria-label={`Seleccionar la categoría ${name}`}
+              aria-label={`Seleccionar la categoría ${category}`}
             >
-              {name}
+              {category}
             </li>
           )
         })}
       </ul>
       <ul className="flex gap-4 text-xs text-neutral-500 lg:text-sm">
-        <li className="cursor-pointer hover:text-primary">Expandir todas</li>
-        <li className="cursor-pointer hover:text-primary">Colapsar todas</li>
+        <li onClick={handleExpandAll} className="cursor-pointer hover:text-primary">
+          Expandir todas
+        </li>
+        <li onClick={handleCollapseAll} className="cursor-pointer hover:text-primary">
+          Colapsar todas
+        </li>
       </ul>
     </div>
   )

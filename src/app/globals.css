@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-neutral-100 to-neutral-200;
+  }
+
+  .article div {
+    @apply flex flex-col gap-4 text-neutral-700;
+  }
+
+  .article h3 {
+    @apply text-base lg:text-lg;
+  }
+
+  .article ul {
+    @apply ml-4 list-disc;
+  }
+
+  .article ol {
+    @apply ml-4 list-decimal;
+  }
+
+  .article a {
+    @apply text-primary hover:underline;
+  }
+
+  .article .button {
+    @apply mx-auto w-fit rounded-md bg-primary/80 px-8 py-2 text-black no-underline hover:bg-primary/90 hover:no-underline hover:shadow-lg;
+  }
+}

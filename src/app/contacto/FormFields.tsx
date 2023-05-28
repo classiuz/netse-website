@@ -24,7 +24,7 @@ export function Input({ label, register, errors, className }: Props) {
           {...register}
           className={clsx('w-full rounded-md border-b-2 bg-surface px-6 py-2 text-base outline-none', {
             'border-error': errors,
-            'border-outline': !errors,
+            'border-outline focus:border-primary': !errors,
           })}
         />
         {errors && (
@@ -51,7 +51,7 @@ export function Textarea({ label, register, errors }: Props) {
           {...register}
           className={clsx('h-64 w-full resize-none rounded-md border-b-2 bg-surface px-6 py-2 text-base outline-none', {
             'border-error': errors,
-            'border-outline': !errors,
+            'border-outline focus:border-primary': !errors,
           })}
         />
 
