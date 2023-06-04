@@ -14,11 +14,11 @@ export default function Navbar() {
       className={clsx('sticky top-0 z-40 flex w-full select-none items-center justify-between border-b p-4 lg:justify-around', {
         'bg-surface': isMenuOpen,
         'border-none bg-transparent': !isBackgroundVisible && !isMenuOpen,
-        'border-outline bg-neutral-200/80 backdrop-blur-md': isBackgroundVisible && !isMenuOpen,
+        'border-outline bg-surface/80 backdrop-blur-xl': isBackgroundVisible && !isMenuOpen,
       })}
     >
       <Link href="/" className="h-fit w-[139.5px] lg:w-[159px]">
-        <Image src={'/logotype.webp'} width={219} height={42} alt={'Netse generando vínculos'} priority />
+        <Image src="/logotype.webp" width={219} height={42} alt={'Netse generando vínculos'} priority />
       </Link>
 
       <div className="flex lg:hidden">

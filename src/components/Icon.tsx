@@ -6,11 +6,12 @@ export type IconName = keyof typeof icons
 interface Props {
   iconName: IconName
   text?: string
+  iconSize?: number
   iconPosition?: 'left' | 'right'
   className?: string
 }
 
-export default function Icon({ text, iconName, iconPosition = 'left', className }: Props) {
+export default function Icon({ text, iconName, iconSize, iconPosition = 'left', className }: Props) {
   const foundIcon = icons[iconName] || icons.question
 
   return text ? (
@@ -21,10 +22,10 @@ export default function Icon({ text, iconName, iconPosition = 'left', className 
         [className!]: className,
       })}
     >
-      <span>{foundIcon}</span>
+      <span style={{ fontSize: iconSize ? `${iconSize}px` : 'inherit' }}>{foundIcon}</span>
       <span>{text}</span>
     </p>
   ) : (
-    foundIcon
+    <span style={{ fontSize: iconSize ? `${iconSize}px` : 'inherit' }}>{foundIcon}</span>
   )
 }

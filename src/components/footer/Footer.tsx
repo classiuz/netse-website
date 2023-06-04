@@ -56,7 +56,7 @@ export default function Footer() {
           </ul>
         </nav>
       </div>
-      <p className="text-center text-neutral-200">© 2023 ESCOM COMUNICACIONES SRL</p>
+      <p className="text-center text-neutral-200">© 2023 ESCOM COMUNICACIONES S.R.L</p>
     </footer>
   )
 }

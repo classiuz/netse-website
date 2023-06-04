@@ -1,16 +1,18 @@
-import {
-  BsEnvelopeFill,
-  BsFacebook,
-  BsGeoAltFill,
-  BsInstagram,
-  BsLinkedin,
-  BsTelephoneFill,
-  BsWhatsapp,
-} from 'react-icons/bs'
+import { BsEnvelopeFill, BsFacebook, BsGeoAltFill, BsInstagram, BsLinkedin, BsTelephoneFill, BsWhatsapp } from 'react-icons/bs'
 
 import { FaBook, FaBookmark, FaBriefcase, FaWifi, FaCaretDown, FaCaretUp, FaQuestion } from 'react-icons/fa'
 
-import { MdCheckCircleOutline, MdClose, MdErrorOutline, MdMenu, MdSearch, MdWarningAmber } from 'react-icons/md'
+import {
+  MdArrowDownward,
+  MdArrowUpward,
+  MdCheckCircleOutline,
+  MdClose,
+  MdErrorOutline,
+  MdMenu,
+  MdSearch,
+  MdWarningAmber,
+  MdInfoOutline,
+} from 'react-icons/md'
 
 const icons = {
   facebook: <BsFacebook />,
@@ -26,12 +28,15 @@ const icons = {
   wifi: <FaWifi />,
   work: <FaBriefcase />,
   tag: <FaBookmark />,
-  arrowUp: <FaCaretUp />,
-  arrowDown: <FaCaretDown />,
+  arrowUp: <MdArrowUpward />,
+  arrowDown: <MdArrowDownward />,
+  caretUp: <FaCaretUp />,
+  caretDown: <FaCaretDown />,
   question: <FaQuestion />,
   search: <MdSearch />,
   done: <MdCheckCircleOutline />,
   error: <MdErrorOutline />,
+  info: <MdInfoOutline />,
   warning: <MdWarningAmber />,
 }
 

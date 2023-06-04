@@ -10,5 +10,11 @@ export type Question = {
   title: string
   sortTitle: string
   content: string
-  path: string
+  path: Path
+}
+
+export type Path = {
+  full: string
+  category: string
+  question: string
 }

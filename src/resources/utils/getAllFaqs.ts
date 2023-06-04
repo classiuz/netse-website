@@ -22,7 +22,11 @@ const getAllFaqs = async () => {
         title: data.title,
         sortTitle: data.sortTitle,
         content,
-        path: `/faqs?tab=${regExp(data.category)}#${regExp(data.sortTitle)}`,
+        path: {
+          full: `/faqs?category=${regExp(data.category)}&question=${regExp(data.sortTitle)}`,
+          category: regExp(data.category),
+          question: regExp(data.sortTitle),
+        },
       }
     }))
 

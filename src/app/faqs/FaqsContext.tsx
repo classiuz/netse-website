@@ -1,10 +1,12 @@
 'use client'
 import { createContext, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import useFilter from './useFilter'
-import { type FaqsData } from '@/resources/types/faqs'
+import { type Path, type FaqsData } from '@/types/faqs'
 
 type AllCategories = Omit<FaqsData, 'questions'>
 type FilteredQuestion = Omit<FaqsData, 'category'>
+type QuestionPath = Omit<Path, 'full'>
 
 interface FaqsValues {
   allCategories: AllCategories[]
@@ -12,35 +14,30 @@ interface FaqsValues {
   setCurrentCategory: Function
   searchQuery: string
   setSearchQuery: Function
+  getIfPathMatch: (questionPath: QuestionPath) => boolean
   isAllOpen: boolean
   setIsAllOpen: Function
-  filteredQuestion: FilteredQuestion[]
+  filteredQuestions: FilteredQuestion[]
 }
 
 const initialValues = {
-  allCategories: [{
-    id: 1,
-    category: '',
-  }],
+  allCategories: [
+    {
+      id: 1,
+      category: '',
+    },
+  ],
   currentCategory: 1,
   setCurrentCategory: () => {},
   searchQuery: '',
   setSearchQuery: () => {},
+  getIfPathMatch: () => false,
   isAllOpen: false,
   setIsAllOpen: () => {},
-  filteredQuestion: [
+  filteredQuestions: [
     {
       id: 1,
-      questions: [
-        {
-          id: 1,
-          category: '',
-          title: '',
-          sortTitle: '',
-          content: '',
-          path: '',
-        },
-      ],
+      questions: [],
     },
   ],
 }
@@ -56,7 +53,18 @@ export function FaqsProvider({ data, children }: Props) {
   const [currentCategory, setCurrentCategory] = useState(initialValues.currentCategory)
   const [searchQuery, setSearchQuery] = useState(initialValues.searchQuery)
   const [isAllOpen, setIsAllOpen] = useState(initialValues.isAllOpen)
-  const filteredQuestion = useFilter(data, searchQuery)
+  const filteredQuestions = useFilter(data, searchQuery)
+
+  const pathname = useSearchParams()
+  const getIfPathMatch = (questionPath: QuestionPath) => {
+    const searchPath = {
+      category: pathname.get('category'),
+      question: pathname.get('question'),
+    }
+    const pathMatch = searchPath.category === questionPath.category && searchPath.question === questionPath.question
+  
+    return pathMatch
+  }
 
   const allCategories = data.map(({ id, category }) => {
     return {
@@ -71,11 +79,12 @@ export function FaqsProvider({ data, children }: Props) {
         allCategories,
         currentCategory,
         setCurrentCategory,
+        getIfPathMatch,
         isAllOpen,
         setIsAllOpen,
         searchQuery,
         setSearchQuery,
-        filteredQuestion,
+        filteredQuestions,
       }}
     >
       {children}

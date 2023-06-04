@@ -31,3 +31,7 @@
     @apply mx-auto w-fit rounded-md bg-primary/80 px-8 py-2 text-black no-underline hover:bg-primary/90 hover:no-underline hover:shadow-lg;
   }
 }
+
+.vertical-background {
+  background: linear-gradient(45deg, #f97316 44%, transparent 1%);
+}

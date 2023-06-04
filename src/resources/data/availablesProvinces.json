@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Buenos Aires",
+    "services": [
+      {
+        "name": "1 Mega",
+        "price": 2.8,
+        "characteristics": ["Internet Ilimitado", "1 Mega de bajada", "2 usuarios en simultaneo"]
+      },
+      {
+        "name": "10 Megas",
+        "price": 5.0,
+        "characteristics": ["Internet Ilimitado", "10 Mega de bajada", "1 Smart tv", "4 Smartphones"]
+      },
+      {
+        "name": "3 Megas",
+        "price": 3.6,
+        "characteristics": ["Internet Ilimitado", "3 Mega de bajada", "1 Smart tv", "2 Smartphones"]
+      }
+    ]
+  },
+  {
+    "name": "Salta",
+    "services": [
+      {
+        "name": "10 Megas",
+        "price": 4.35,
+        "characteristics": ["Internet Ilimitado", "10 Mega de bajada", "1 Smart tv", "4 Smartphones"]
+      }
+    ]
+  },
+  {
+    "name": "Neuquén",
+    "services": []
+  },
+  {
+    "name": "Río Negro",
+    "services": [
+      {
+        "name": "10 Megas",
+        "price": 3.7,
+        "characteristics": ["Internet Ilimitado", "10 Mega de bajada", "2 usuarios en simultaneo", "1 Smart TV"]
+      },
+      {
+        "name": "20 Megas",
+        "price": 4.0,
+        "characteristics": ["Internet Ilimitado", "20 Mega de bajada", "1 Smart tv", "3 Smartphones"]
+      },
+      {
+        "name": "30 Megas",
+        "price": 4.5,
+        "characteristics": ["Internet Ilimitado", "30 Mega de bajada", "1 Smart tv", "4 Smartphones"]
+      }
+    ]
+  }
+]

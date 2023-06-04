@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         primary: '#f97316',
         surface: '#fafafa',
-        outline: '#e5e5e5',
+        outline: '#e0e0e0',
         error: '#dc2626',
       },
       transitionProperty: {

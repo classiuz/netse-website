@@ -32,7 +32,7 @@ export default function SearchBar() {
         onChange={handleOnChange}
         placeholder="Buscar..."
         aria-label="Buscar"
-        className="placeholder:neutral-400 rounded-md border-b-2 border-outline bg-surface px-6 py-2 text-base outline-none focus:border-primary"
+        className="placeholder:neutral-400 rounded-md border-b-2 border-outline bg-surface px-6 py-2 text-base outline-none focus:border-primary/60"
       />
       <span
         onClick={handleClickIcon}

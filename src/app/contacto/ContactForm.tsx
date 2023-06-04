@@ -1,6 +1,7 @@
 'use client'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { Input, Textarea } from './FormFields'
+import Button from '@/components/Button'
 
 export type Inputs = {
   name: string
@@ -29,9 +30,7 @@ export default function ContactForm() {
         <Input label="Email*" register={register('email', { required: true, pattern: emailPattern })} errors={errors.email} className='lg:w-6/12' />
       </div>
       <Textarea label="Mensaje*" register={register('message', { required: true })} errors={errors.message} />
-      <button type="submit" className="mx-auto w-fit rounded-md bg-primary/80 px-8 py-2 hover:bg-primary/90 hover:shadow-lg">
-        Enviar mensaje
-      </button>
+      <Button className='mx-auto'>Enviar mensaje</Button>
     </form>
   )
 }
