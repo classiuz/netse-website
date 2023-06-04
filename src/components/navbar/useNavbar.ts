@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export default function useNavbar() {
-  const storageIsBackgroundVisible = localStorage.getItem('IsBackgroundVisible')
-
-  const [isBackgroundVisible, setIsBackgroundVisible] = useState(storageIsBackgroundVisible === 'true')
+  const [isBackgroundVisible, setIsBackgroundVisible] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHover, setIsHover] = useState(false)
 
@@ -25,11 +23,7 @@ export default function useNavbar() {
   }
 
   const handleWindowsScroll = () => {
-    if (window.scrollY >= 63) {
-      localStorage.setItem('IsBackgroundVisible', 'true')
-      return setIsBackgroundVisible(true)
-    }
-    localStorage.setItem('IsBackgroundVisible', 'false')
+    if (window.scrollY >= 63) return setIsBackgroundVisible(true)
     setIsBackgroundVisible(false)
   }
 
