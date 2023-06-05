@@ -1,22 +1,20 @@
 'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import Icon from '../Icon'
-import useNavbar from './useNavbar'
-import NavLinks from './NavLinks'
+import NavLinks from './NavContent'
 
 export default function Navbar() {
-  const { isBackgroundVisible, isMenuOpen, handleMenuToggle } = useNavbar()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   return (
-    <nav
-      className={clsx('sticky top-0 z-40 flex w-full select-none items-center justify-between border-b p-4 lg:justify-around', {
-        'bg-surface': isMenuOpen,
-        'border-none bg-transparent': !isBackgroundVisible && !isMenuOpen,
-        'border-outline bg-surface/80 backdrop-blur-xl': isBackgroundVisible && !isMenuOpen,
-      })}
-    >
+    <nav className="sticky top-0 z-40 flex w-full select-none items-center justify-between border-b bg-surface p-4 lg:justify-around">
       <Link href="/" className="h-fit w-[139.5px] lg:w-[159px]">
         <Image src="/logotype.webp" width={219} height={42} alt={'Netse generando vínculos'} priority />
       </Link>
