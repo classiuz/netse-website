@@ -6,7 +6,7 @@ import Card, { Title, SubTitle, Content } from '@/components/Card'
 
 export default function Home() {
   return (
-    <main className="my-20">
+    <main className="by-20">
       <Header />
       <section className="flex h-full flex-col">
         <Article>

@@ -26,7 +26,7 @@ export default function QuestionCard({ title, questionPath, children }: Props) {
       <div
         onClick={handleIsOpen}
         className={clsx(
-          'flex cursor-pointer items-center justify-between border-outline bg-surface px-4 py-2 text-neutral-600 lg:px-8',
+          'flex cursor-pointer items-center justify-between border-outline hover:border-primary/80 bg-surface px-4 py-2 text-neutral-600 lg:px-8',
           {
             'rounded-md border-b-2': !isAllOpen || !isOpen,
             'rounded-t-md border-none': isAllOpen || isOpen || pathMatch,

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import Icon from '../Icon'
-import NavLinks from './NavContent'
+import NavLinks from './NavLinks'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
